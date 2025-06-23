@@ -6,6 +6,7 @@ import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
 import CountUp from './count-up'
+import RotatingText from './RotatingText'
 
 const transitionVariants = {
     item: {
@@ -33,7 +34,7 @@ export default function HeroSection() {
             <HeroHeader />
             <main className="overflow-hidden">
                 <section>
-                    <div className="relative pt-24 md:pt-32">
+                    <div className="relative pt-10 md:pt-10">
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -90,7 +91,14 @@ export default function HeroSection() {
                                         {" advantage"}
                                     </TextEffect>
                                 </h1>
-                                <TextEffect
+                                <div className="mb-8 mt-8">
+                                    <div className="text-lg text-gray-400 mb-1">Specializing in</div>
+                                    <RotatingText
+                                        texts={["Lead Identification", "Persona Mapping", "Email Drafting", "CRM Syncing"]}
+                                        className="text-2xl font-semibold text-white"
+                                    />
+                                </div>
+                                {/* <TextEffect
                                     per="line"
                                     preset="fade-in-blur"
                                     speedSegment={0.3}
@@ -98,25 +106,25 @@ export default function HeroSection() {
                                     as="p"
                                     className="mx-auto mt-8 max-w-2xl text-balance text-lg">
                                     Altara transforms your business with in-house AI automation — cutting weeks of work into minutes, streamlining operations, and driving real revenue growth.
-                                </TextEffect>
+                                </TextEffect> */}
 
                                 <form
                                     action=""
                                     className="mx-auto mt-10 max-w-sm lg:mt-12">
-                                    <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.75rem)] border pr-3 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
+                                    <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-full border pr-3 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
                                         <Mail className="text-caption pointer-events-none absolute inset-y-0 left-5 my-auto size-5" />
 
                                         <input
-                                            placeholder="Your mail address"
-                                            className="h-14 w-full bg-transparent pl-12 focus:outline-none"
+                                            placeholder="Enter your mail"
+                                            className="h-14 w-full bg-transparent pl-12 focus:outline-none rounded-full"
                                             type="email"
                                         />
 
                                         <div className="md:pr-1.5 lg:pr-0">
                                             <Button
                                                 aria-label="submit"
-                                                className="rounded-(--radius)">
-                                                <span className="hidden md:block">Get Started</span>
+                                                className="rounded-full">
+                                                <span className="hidden md:block">Notify Me</span>
                                                 <SendHorizonal
                                                     className="relative mx-auto size-5 md:hidden"
                                                     strokeWidth={2}

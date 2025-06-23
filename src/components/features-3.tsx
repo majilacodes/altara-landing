@@ -1,82 +1,115 @@
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Settings2, Sparkles, Zap } from 'lucide-react'
-import { ReactNode } from 'react'
+"use client";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { UserPlus, Share2, RefreshCw, TrendingUp } from 'lucide-react';
 
-export default function Features() {
-    return (
-        <section className="bg-zinc-50 py-16 md:py-32 dark:bg-transparent">
-            <div className="@container mx-auto max-w-5xl px-6">
-                <div className="text-center">
-                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Built to cover your needs</h2>
-                    <p className="mt-4">Libero sapiente aliquam quibusdam aspernatur, praesentium iusto repellendus.</p>
+const steps = [
+  {
+    step: "Step 1",
+    icon: UserPlus,
+    title: "Subscribe",
+    description: "Join our AI-driven growth platform with a simple subscription. Access your project board, and we'll reach out the same day for a introductory discussion."
+  },
+  {
+    step: "Step 2", 
+    icon: Share2,
+    title: "Share your vision",
+    description: "Tell us about your brand, audience and goals. Business requirements and constraints, break the project into bite-sized tasks, and start implementing."
+  },
+  {
+    step: "Step 3",
+    icon: RefreshCw,
+    title: "Continuous results",
+    description: "Receive regular updates on our intelligent platforms implemented AI as a strategic asset, ensuring it becomes an integral part of your company's workflow."
+  },
+  {
+    step: "Step 4",
+    icon: TrendingUp,
+    title: "Enjoy the growth",
+    description: "Our results drive your business growth, which enables you to scale and make detailed instructions, training, and tech support as long as you need to maximize our work's value."
+  }
+];
+
+const HowItWorksSection = () => {
+  return (
+    <section className="py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
+            How it works?
+          </h2>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={index}
+                className="glass-effect rounded-2xl p-6 h-96 flex flex-col backdrop-blur-md bg-white/10 border border-white/10 shadow-lg"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1, 
+                  ease: [0.25, 1, 0.5, 1] 
+                }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.02,
+                  boxShadow: "0 20px 40px rgba(255, 255, 255, 0.1)"
+                }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px'
+                }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-gray-400 bg-white bg-opacity-10 px-3 py-1 rounded-full">
+                    {step.step}
+                  </span>
+                  <motion.div
+                    className="text-white"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <Icon size={32} />
+                  </motion.div>
                 </div>
-                <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16">
-                    <div className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Zap
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  {step.title}
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-300 leading-relaxed flex-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  {step.description}
+                </motion.p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
 
-                            <h3 className="mt-6 font-medium">Customizable</h3>
-                        </CardHeader>
-
-                        <CardContent>
-                            <p className="text-sm">Extensive customization options, allowing you to tailor every aspect to meet your specific needs.</p>
-                        </CardContent>
-                    </div>
-
-                    <div className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Settings2
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
-
-                            <h3 className="mt-6 font-medium">You have full control</h3>
-                        </CardHeader>
-
-                        <CardContent>
-                            <p className="mt-3 text-sm">From design elements to functionality, you have complete control to create a unique and personalized experience.</p>
-                        </CardContent>
-                    </div>
-
-                    <div className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Sparkles
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
-
-                            <h3 className="mt-6 font-medium">Powered By AI</h3>
-                        </CardHeader>
-
-                        <CardContent>
-                            <p className="mt-3 text-sm">Elements to functionality, you have complete control to create a unique experience.</p>
-                        </CardContent>
-                    </div>
-                </Card>
-            </div>
-        </section>
-    )
-}
-
-const CardDecorator = ({ children }: { children: ReactNode }) => (
-    <div className="relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
-        <div
-            aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]"
-        />
-        <div
-            aria-hidden
-            className="bg-radial to-background absolute inset-0 from-transparent to-75%"
-        />
-        <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">{children}</div>
-    </div>
-)
+export default HowItWorksSection;
